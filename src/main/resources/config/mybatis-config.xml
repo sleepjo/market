@@ -24,7 +24,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource=""></mapper>
         <package name="sleepjo.xmlmapper"/>
     </mappers>
 

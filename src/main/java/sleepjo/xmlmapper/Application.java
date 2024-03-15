@@ -34,7 +34,6 @@ public class Application {
                         System.out.println("You should log in first!!!!");
                         continue;
                     }
-                    
                     productSubmenu();
                     break;
                 case 3: 
@@ -128,16 +127,43 @@ public class Application {
             
             switch (input){
                 case 1: memberSerivce.signUp(inputSignUp()); break;
-                case 2: memberSerivce.logIn(inputLogIn()); break;
-                case 3: memberSerivce.logOut(); break;
+                case 2:
+                    if(logInStatus) {
+                        System.out.println("You are already logged in");
+                        continue;
+                    }
+                    logInStatus = memberSerivce.logIn(inputLogIn());
+                    if(logInStatus){
+                        System.out.println("You are logged in!!!");
+                    }
+                    else{
+                        System.out.println("Failed to Logged in!!!");
+                    }
+                    break;
+                case 3:
+                    if(!logInStatus){
+                        System.out.println("You are already logged out!!!");
+                    } else {
+                        logInStatus = false;
+                        System.out.println("You are signed out!!!");
+                    }
+                    break;
                 case 9: return;
             }
             
         } while(true);
     }
 
-    private static Object inputLogIn() {
-        return null;
+    private static Map<String,String> inputLogIn() {
+        sc.nextLine();
+        System.out.print("id: ");
+        String id = sc.nextLine();
+        System.out.print("password: ");
+        String password = sc.nextLine();
+        Map<String,String> data = new HashMap<>();
+        data.put("id", id);
+        data.put("password", password);
+        return data;
     }
 
     private static Map<String,String> inputSignUp() {

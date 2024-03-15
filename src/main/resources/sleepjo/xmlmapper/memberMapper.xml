@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sleepjo.xmlmapper.MemberMapper">
+
+
+    <insert id="signUp" parameterType="hashmap">
+        INSERT INTO
+            MEMBER
+            (MEMBER_ID_, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_USERNAME, MEMBER_AGE, MEMBER_EMAIL)
+        VALUES
+            (#{id}, #{password}, #{name}, #{username}, #{email})
+    </insert>
+
+    <select id="logIn" resultType="string" parameterType="hashmap">
+        SELECT
+           member_password
+        FROM
+            MEMBER
+        WHERE
+            member_id = #{id}
+    </select>
+
+
+</mapper>
