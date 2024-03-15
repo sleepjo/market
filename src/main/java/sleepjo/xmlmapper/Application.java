@@ -1,6 +1,10 @@
 package sleepjo.xmlmapper;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+import sleepjo.common.MemberDTO;
 import sleepjo.xmlmapper.MemberService;
 
 public class Application {
@@ -103,6 +107,15 @@ public class Application {
         
     }
 
+    private static void updateProduct() {
+    }
+
+    private static void deleteProduct() {
+    }
+
+    private static void insertProduct() {
+    }
+
     private static void memberSubmenu() {
         do{
             System.out.println("**********Member Submenu**********");
@@ -114,12 +127,39 @@ public class Application {
             input = sc.nextInt();
             
             switch (input){
-                case 1: memberSerivce.signUp(); break;
-                case 2: memberSerivce.logIn(); break;
+                case 1: memberSerivce.signUp(inputSignUp()); break;
+                case 2: memberSerivce.logIn(inputLogIn()); break;
                 case 3: memberSerivce.logOut(); break;
                 case 9: return;
             }
             
         } while(true);
+    }
+
+    private static Object inputLogIn() {
+        return null;
+    }
+
+    private static Map<String,String> inputSignUp() {
+        sc.nextLine(); // buffer 비우기
+        System.out.print("id: ");
+        String id = sc.nextLine();
+        System.out.print("password: ");
+        String password = sc.nextLine();
+        System.out.print("name: ");
+        String name = sc.nextLine();
+        System.out.print("username: ");
+        String username = sc.nextLine();
+        System.out.print("email: ");
+        String email = sc.nextLine();
+        Map<String,String> data = new HashMap<>();
+        data.put("id", id);
+        data.put("password", password);
+        data.put("name", name);
+        data.put("username", username);
+        data.put("email", email);
+
+        return data;
+
     }
 }
