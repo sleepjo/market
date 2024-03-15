@@ -1,6 +1,7 @@
 package sleepjo.xmlmapper;
 
 import org.apache.ibatis.session.SqlSession;
+import sleepjo.common.MemberDTO;
 
 import java.util.Map;
 
@@ -23,10 +24,15 @@ public class MemberService {
         sqlSession.close();
     }
 
-    public void logIn(Object o) {
-    }
 
-    public void logOut() {
+    public boolean logIn(Map<String, String> data) {
+        SqlSession sqlSession = getSqlSession();
+        mapper = sqlSession.getMapper(memberMapper.class);
+        String password = mapper.logIn(data);
+        if(password.equals(data.get("password")))
+            return true;
+
+        return false;
     }
 }
 
