@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ken.section01.xmlmapper.ElementTestMapper">
+
+    <insert id="" parameterType="memberDTO">
+        INSERT INTO
+            MEMBER
+            (MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS)
+        VALUES
+            (#{ name }, #{ price }, #{categoryCode}, 'Y')
+    </insert>
+
+    <select id="" resultMap="" parameterType="">
+        SELECT
+            MEMBER_CODE,
+            MEMBER_ID,
+            MEMBER_PASSWORD,
+            MEMBER_NAME,
+            MEMBER_USERNAME,
+            MEMBER_EMAIL
+        FROM
+            MEMBER
+        WHERE
+
+    </select>
+
+
 </mapper>
