@@ -4,20 +4,12 @@ package sleepjo.common;
 public class MemberDTO {
 
     private int code;
+    private String id;
+    private String password;
     private String name;
-    private int price;
-    private int categoryCode;
-    private String orderableStatus;
+    private String nickName;
+    private String eMail;
 
-    public MemberDTO() {}
-
-    public MemberDTO(int code, String name, int price, int categoryCode, String orderableStatus) {
-        this.code = code;
-        this.name = name;
-        this.price = price;
-        this.categoryCode = categoryCode;
-        this.orderableStatus = orderableStatus;
-    }
 
     public int getCode() {
         return code;
@@ -25,6 +17,34 @@ public class MemberDTO {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return "MemberDTO{" +
+                "code=" + code +
+                ", id='" + id + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", eMail='" + eMail + '\'' +
+                '}';
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -35,38 +55,28 @@ public class MemberDTO {
         this.name = name;
     }
 
-    public int getPrice() {
-        return price;
+    public String getNickName() {
+        return nickName;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
-    public int getCategoryCode() {
-        return categoryCode;
+    public String geteMail() {
+        return eMail;
     }
 
-    public void setCategoryCode(int categoryCode) {
-        this.categoryCode = categoryCode;
+    public void seteMail(String eMail) {
+        this.eMail = eMail;
     }
 
-    public String getOrderableStatus() {
-        return orderableStatus;
-    }
-
-    public void setOrderableStatus(String orderableStatus) {
-        this.orderableStatus = orderableStatus;
-    }
-
-    @Override
-    public String toString() {
-        return "MenuDTO{" +
-                "code=" + code +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", categoryCode=" + categoryCode +
-                ", orderableStatus='" + orderableStatus + '\'' +
-                '}';
+    public MemberDTO(int code, String id, String password, String name, String nickName, String eMail) {
+        this.code = code;
+        this.id = id;
+        this.password = password;
+        this.name = name;
+        this.nickName = nickName;
+        this.eMail = eMail;
     }
 }
