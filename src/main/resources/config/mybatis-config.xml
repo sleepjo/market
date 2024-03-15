@@ -6,9 +6,9 @@
 
     <properties resource="config/connection-info.properties"/>
     <typeAliases>
-        <typeAlias type="ken.common.MenuDTO" alias="MenuDTO"/>
-        <typeAlias type="ken.common.MenuAndCategoryDTO" alias="MenuAndCategoryDTO"/>
-        <typeAlias type="ken.common.CategoryAndMenuDTO" alias="CategoryAndMenuDTO"/>
+<!--        <typeAlias type="ken.common.MenuDTO" alias="MenuDTO"/>-->
+<!--        <typeAlias type="ken.common.MenuAndCategoryDTO" alias="MenuAndCategoryDTO"/>-->
+<!--        <typeAlias type="ken.common.CategoryAndMenuDTO" alias="CategoryAndMenuDTO"/>-->
         <!--<typeAlias type="ken.common.SearchCriteria" alias="SearchCriteria"/>-->
     </typeAliases>
 
@@ -24,7 +24,7 @@
         </environment>
     </environments>
     <mappers>
-        <package name="ken.section01.xmlmapper"/>
+        <package name="sleepjo.xmlmapper"/>
     </mappers>
 
 </configuration>

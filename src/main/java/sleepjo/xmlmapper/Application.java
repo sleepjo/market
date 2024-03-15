@@ -1,5 +1,7 @@
 package sleepjo.xmlmapper;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import sleepjo.xmlmapper.MemberService;
 
@@ -45,6 +47,9 @@ public class Application {
     }
 
     private static void postSubmenu() {
+
+        PostController postController = new PostController();
+
         do{
             System.out.println("**********Post Submenu**********");
             System.out.println("1. view all posts");
@@ -60,7 +65,7 @@ public class Application {
                     viewByTitle();
                     break;
                 case 3:
-                    viewByMemberCode();
+                    postController.viewByMemberCode(inputMemberCode());
                     break;
                 case 9:
                     return;
@@ -68,7 +73,20 @@ public class Application {
         } while(input != 9); 
     }
 
+    private static Map<String, Integer> inputMemberCode() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("조회할 멤버 코드를 입력해주세요 : ");
+        int code = sc.nextInt();
+
+        Map<String, Integer> parameter = new HashMap<>();
+        parameter.put("code", code);
+
+        return parameter;
+    }
+
     private static void viewByMemberCode() {
+
+
     }
 
     private static void viewByTitle() {
@@ -87,17 +105,17 @@ public class Application {
             System.out.println("9. back to main menu");
             input = sc.nextInt();
             switch (input){
-                case 1: 
-                    insertProduct();
-                    break;
-                case 2:
-                    deleteProduct();
-                    break;
-                case 3:
-                    updateProduct();
-                    break;
-                case 9:
-                    return;
+//                case 1:
+//                    insertProduct();
+//                    break;
+//                case 2:
+//                    deleteProduct();
+//                    break;
+//                case 3:
+//                    updateProduct();
+//                    break;
+//                case 9:
+//                    return;
             }
         } while(input != 9);
         
@@ -114,10 +132,10 @@ public class Application {
             input = sc.nextInt();
             
             switch (input){
-                case 1: memberSerivce.signUp(); break;
-                case 2: memberSerivce.logIn(); break;
-                case 3: memberSerivce.logOut(); break;
-                case 9: return;
+//                case 1: memberSerivce.signUp(); break;
+//                case 2: memberSerivce.logIn(); break;
+//                case 3: memberSerivce.logOut(); break;
+//                case 9: return;
             }
             
         } while(true);

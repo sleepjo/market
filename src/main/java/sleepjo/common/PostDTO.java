@@ -5,6 +5,7 @@ public class PostDTO {
     private String title;
     private int productCode;
 
+    private ProductDTO;
     public PostDTO() {
     }
 
