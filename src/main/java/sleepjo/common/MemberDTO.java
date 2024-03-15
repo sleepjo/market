@@ -7,17 +7,8 @@ public class MemberDTO {
     private String id;
     private String password;
     private String name;
-    private String nickName;
-    private String eMail;
-
-
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
+    private String userName;
+    private String email;
 
     @Override
     public String toString() {
@@ -26,9 +17,20 @@ public class MemberDTO {
                 ", id='" + id + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
-                ", nickName='" + nickName + '\'' +
-                ", eMail='" + eMail + '\'' +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
                 '}';
+    }
+
+    public MemberDTO() {
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 
     public String getId() {
@@ -55,28 +57,28 @@ public class MemberDTO {
         this.name = name;
     }
 
-    public String getNickName() {
-        return nickName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String geteMail() {
-        return eMail;
+    public String getEmail() {
+        return email;
     }
 
-    public void seteMail(String eMail) {
-        this.eMail = eMail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public MemberDTO(int code, String id, String password, String name, String nickName, String eMail) {
+    public MemberDTO(int code, String id, String password, String name, String userName, String email) {
         this.code = code;
         this.id = id;
         this.password = password;
         this.name = name;
-        this.nickName = nickName;
-        this.eMail = eMail;
+        this.userName = userName;
+        this.email = email;
     }
 }
