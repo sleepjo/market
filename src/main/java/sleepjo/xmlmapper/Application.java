@@ -1,10 +1,11 @@
 package sleepjo.xmlmapper;
 
 import java.util.Scanner;
+import sleepjo.xmlmapper.MemberService;
 
 public class Application {
     static Scanner sc;
-    static MemberSerivce memberSerivce;
+    static MemberService memberSerivce;
     static int input;
     static boolean logInStatus = false;
     public static void main(String[] args) {
