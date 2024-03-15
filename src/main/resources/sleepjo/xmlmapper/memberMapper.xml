@@ -11,18 +11,13 @@
             (#{id}, #{password}, #{name}, #{username}, #{email})
     </insert>
 
-    <select id="" resultMap="" parameterType="">
+    <select id="logIn" resultType="string" parameterType="hashmap">
         SELECT
-            MEMBER_CODE,
-            MEMBER_ID,
-            MEMBER_PASSWORD,
-            MEMBER_NAME,
-            MEMBER_USERNAME,
-            MEMBER_EMAIL
+           member_password
         FROM
             MEMBER
         WHERE
-
+            member_id = #{id}
     </select>
 
 
