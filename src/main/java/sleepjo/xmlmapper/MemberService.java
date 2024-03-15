@@ -1,2 +1,4 @@
-package sleepjo.xmlmapper;public class MemberService {
+package sleepjo.xmlmapper;
+
+public class MemberService {
 }
