@@ -4,17 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import sleepjo.common.MemberDTO;
-import sleepjo.xmlmapper.MemberService;
-
 public class Application {
     static Scanner sc;
     static MemberService memberSerivce;
+    static PostService postService;
     static int input;
     static boolean logInStatus = false;
     public static void main(String[] args) {
         sc = new Scanner(System.in);
         memberSerivce = new MemberService();
+        postService = new PostService();
         
         do{
             System.out.println("********Menu*********");
@@ -60,7 +59,7 @@ public class Application {
                     viewAllPost();
                     break;
                 case 2:
-                    viewByTitle();
+                    postService.viewPostByTitle(inputTitle());
                     break;
                 case 3:
                     viewByMemberCode();
@@ -71,14 +70,24 @@ public class Application {
         } while(input != 9); 
     }
 
+    private static Map<String,String> inputTitle() {
+        System.out.println("****************");
+        System.out.print("input title: ");
+        sc.nextLine(); // buffer 비우기
+        String title = sc.nextLine();
+        Map<String,String> data = new HashMap<>();
+        data.put("title", title);
+
+        return data;
+    }
+
     private static void viewByMemberCode() {
     }
 
-    private static void viewByTitle() {
-    }
+
 
     private static void viewAllPost() {
-        
+
     }
 
     private static void productSubmenu() {

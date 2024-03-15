@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import sleepjo.xmlmapper.MemberMapper;
+import sleepjo.xmlmapper.PostMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,6 +31,7 @@ public class Template {
 
             Configuration configuration = new Configuration(environment);
             configuration.addMapper(MemberMapper.class);
+            configuration.addMapper(PostMapper.class);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
 
         }
