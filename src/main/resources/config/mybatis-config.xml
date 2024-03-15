@@ -14,7 +14,7 @@
 
     <environments default="dev">
         <environment id="dev">
-            <transactionManager type="JDBC"></transactionManager>
+            <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
@@ -24,6 +24,7 @@
         </environment>
     </environments>
     <mappers>
+        <mapper resource=""></mapper>
         <package name="sleepjo.xmlmapper"/>
     </mappers>
 

@@ -2,6 +2,6 @@ package sleepjo.xmlmapper;
 
 import java.util.Map;
 
-public interface memberMapper {
+public interface MemberMapper {
     int signUp(Map<String, String> data);
 }
