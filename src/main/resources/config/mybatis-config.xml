@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="config/connection-info.properties"/>
+    <typeAliases>
+        <typeAlias type="ken.common.MenuDTO" alias="MenuDTO"/>
+        <typeAlias type="ken.common.MenuAndCategoryDTO" alias="MenuAndCategoryDTO"/>
+        <typeAlias type="ken.common.CategoryAndMenuDTO" alias="CategoryAndMenuDTO"/>
+        <!--<typeAlias type="ken.common.SearchCriteria" alias="SearchCriteria"/>-->
+    </typeAliases>
+
+    <environments default="dev">
+        <environment id="dev">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <package name="ken.section01.xmlmapper"/>
+    </mappers>
+
+</configuration>

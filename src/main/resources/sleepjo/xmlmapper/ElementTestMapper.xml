@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ken.section01.xmlmapper.ElementTestMapper">
+
+    <!--
+        <cache>, <cache-ref>, <resultMap>
+
+
+        <cache>
+            1. eviction : LRU, FIFO, SOFT, WEAK, default: LRU
+            2. flushInterval: setting how long will the cache be stored by ms
+            3. size : the size of objects in cache default : 1024
+            4. readonly
+
+            what is cache? the storage where we save data or value
+                - fast
+    -->
+
+    <cache eviction="LRU" flushInterval="1000" size="512" readOnly="true"/>
+    <select id="selectCacheTest" resultType="java.lang.String">
+        select menu_name
+        from
+            tbl_menu
+    </select>
+
+    <!--
+    1. id : for mapping
+    2. type : type of result mapping
+    3. extends :
+    4. automapping
+    -->
+    <resultMap id="menuResultMap1" type="ken.common.MenuDTO" autoMapping="false">
+        <id property="code" column="menu_code"/>
+        <result property="name" column="menu_name"/>
+        <result property="price" column="menu_price"/>
+        <result property="categoryCode" column="category_code"/>
+    </resultMap>
+
+    <resultMap id="menuResultMap2" type="ken.common.MenuDTO" extends="menuResultMap1">
+        <result property="orderableStatus" column="Orderable_status"/>
+    </resultMap>
+
+    <select id="selectResultMapTest" resultMap="menuResultMap2">
+        select *
+        from tbl_menu
+    </select>
+
+    <resultMap id="menuResultMap3" type="MenuDTO">
+        <constructor>
+            <idArg column="menu_code" javaType="_int"/>
+            <arg column="menu_name" javaType="string"/>
+            <arg column="menu_price" javaType="_int"/>
+            <arg column="category_code" javaType="_int"/>
+            <arg column="orderable_status" javaType="string"/>
+        </constructor>
+    </resultMap>
+
+    <select id="selectResultMapConstructorTest" resultMap="menuResultMap3">
+        select  * from tbl_menu where orderable_status = 'Y'
+    </select>
+
+    <resultMap id="categoryResultMap" type="ken.common.CategoryDTO">
+        <id property="code" column="Category_code"/>
+        <result property="name" column="category_name"/>
+        <result property="refCategoryCode" column="REF_category_code"/>
+    </resultMap>
+
+<!--    <resultMap id="menuAndCategoryResultMap" type="MenuAndCategoryDTO">-->
+<!--        <id property="code" column="menu_code"/>-->
+<!--        <result property="name" column="menu_name"/>-->
+<!--        <result property="price" column="menu_price"/>-->
+<!--        <result property="orderableStatus" column="orderable_status"/>-->
+<!--        <association property="category" resultMap="categoryResultMap"/>-->
+<!--    </resultMap>-->
+
+    <resultMap id="menuAndCategoryResultMap" type="MenuAndCategoryDTO">
+        <id property="code" column="menu_code"/>
+        <result property="name" column="Menu_name"/>
+        <result property="price" column="menu_price"/>
+        <result property="orderableStatus" column="orderable_status"/>
+        <association property="category" javaType="ken.common.CategoryDTO">
+            <id property="code" column="Category_code"/>
+            <result property="name" column="category_name"/>
+            <result property="refCategoryCode" column="REF_category_code"/>
+        </association>
+    </resultMap>
+
+    <select id="selectResultMapAssociationTest" resultMap="menuAndCategoryResultMap">
+        select
+            a.menu_code,
+            a.menu_name,
+            a.menu_price,
+            a.orderable_status,
+            b.category_code,
+            b.category_name,
+            b.ref_category_code
+        from
+            tbl_menu a
+        join
+            tbl_category b on (a.category_code = b.category_code)
+        where
+            a.orderable_status = 'Y'
+    </select>
+
+    <resultMap id="categoryAndMenuResultMap" type="CategoryAndMenuDTO">
+        <id property="code" column="category_code"/>
+        <result property="name" column="category_name"/>
+        <result property="refCategoryCode" column="ref_category_code"/>
+        <collection property="menuList" ofType="MenuDTO">
+            <id property="code" column="menu_code"/>
+            <result property="name" column="menu_name"/>
+            <result property="price" column="menu_price"/>
+            <result property="categoryCode" column="category_code"/>
+            <result property="orderableStatus" column="orderable_status"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectResultMapCollectionTest" resultMap="categoryAndMenuResultMap">
+        select
+            a.category_code,
+            a.category_name,
+            a.ref_category_code,
+            b.menu_code,
+            b.menu_name,
+            b.menu_price,
+            b.category_code,
+            b.orderable_status
+        from
+            tbl_category a
+        left join
+                tbl_menu b on (a.category_code = b.category_code)
+        order by a.category_code
+    </select>
+
+    <sql id="columns">
+            menu_code,
+            menu_name,
+            menu_price,
+            category_code,
+            orderable_status
+    </sql>
+
+    <select id="selectSqlTest" resultMap="menuResultMap3">
+        select
+            <include refid="columns"/>
+        from tbl_menu
+        where orderable_status = 'Y'
+    </select>
+
+</mapper>
