@@ -32,6 +32,7 @@ public class Template {
             Configuration configuration = new Configuration(environment);
             configuration.addMapper(MemberMapper.class);
             configuration.addMapper(PostMapper.class);
+            configuration.addMapper(ProductMapper.class);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
 
         }
