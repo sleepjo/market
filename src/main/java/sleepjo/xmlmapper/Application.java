@@ -29,10 +29,13 @@ public class Application {
                     memberSubmenu();
                     break;
                 case 2: 
+
+
                     if(!logInStatus) {
                         System.out.println("You should log in first!!!!");
                         continue;
                     }
+
                     productSubmenu();
                     break;
                 case 3: 
@@ -91,6 +94,8 @@ public class Application {
     }
 
     private static void productSubmenu() {
+        ProductController productController = new ProductController();
+
         do{
             System.out.println("**********Product Submenu**********");
             System.out.println("1. insert product");
@@ -99,14 +104,14 @@ public class Application {
             System.out.println("9. back to main menu");
             input = sc.nextInt();
             switch (input){
-                case 1: 
-                    insertProduct();
+                case 1:
+                    productController.insertProduct(inputProduct());
                     break;
                 case 2:
-                    deleteProduct();
+                    productController.deleteProduct(inputProductCode());
                     break;
                 case 3:
-                    updateProduct();
+                    productController.updateProduct(inputModifyProduct());
                     break;
                 case 9:
                     return;
@@ -115,13 +120,63 @@ public class Application {
         
     }
 
-    private static void updateProduct() {
+
+    private static Map<String,String> inputModifyProduct() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("수정할 상품 코드를 입력해주세요 : ");
+        String code = sc.nextLine();
+        System.out.print("상품 이름을 입력해주세요 : ");
+        String name = sc.nextLine();
+        System.out.print("상품 가격을 입력해주세요 : ");
+        String price = sc.nextLine();
+        System.out.print("상품 설명을 입력해주세요 : ");
+        String description = sc.nextLine();
+
+        Map<String,String> parameter = new HashMap<>();
+        parameter.put("code", code);
+        parameter.put("name",name);
+        parameter.put("price",price);
+        parameter.put("description",description);
+
+        return parameter;
+
     }
 
-    private static void deleteProduct() {
+    private static Map<String,String> inputProductCode() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("삭제할 상품 코드를 입력해주세요 : ");
+        String code = sc.nextLine();
+
+        Map<String,String> parameter = new HashMap<>();
+        parameter.put("code",code);
+
+        return parameter;
+
     }
 
-    private static void insertProduct() {
+    private static Map<String, String> inputProduct() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("상품 이름을 입력해주세요 : ");
+        String name = sc.nextLine();
+        System.out.print("상품 가격을 입력해주세요 : ");
+        String price = sc.nextLine();
+        System.out.print("상품 설명을 입력해주세요 : ");
+        String description = sc.nextLine();
+        System.out.print("회원 코드를 입력해주세요 : ");
+        String memberCode = sc.nextLine();
+
+        Map<String,String> parameter = new HashMap<>();
+        parameter.put("name",name);
+        parameter.put("price",price);
+        parameter.put("description",description);
+        parameter.put("memberCode",memberCode);
+
+        return parameter;
+
+
     }
 
     private static void memberSubmenu() {
@@ -134,6 +189,7 @@ public class Application {
             System.out.print("input: ");
             input = sc.nextInt();
             
+
             switch (input){
                 case 1: memberSerivce.signUp(inputSignUp()); break;
                 case 2:
@@ -159,6 +215,7 @@ public class Application {
                     break;
                 case 9: return;
             }
+
             
         } while(true);
     }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="sleepjo.xmlmapper.ProductMapper">
+    <resultMap id="ProductResultMap" type="sleepjo.common.ProductDTO">
+        <id property="code" column="PRODUCT_CODE"/>
+        <result property="name" column="PRODUCT_NAME"/>
+        <result property="price" column="PRODUCT_PRICE"/>
+        <result property="description" column="PRODUCT_DESCRIPTION"/>
+        <result property="memberCode" column="MEMBER_CODE"/>
+    </resultMap>
+    <insert id="insertProduct" parameterType="sleepjo.common.ProductDTO">
+        INSERT INTO PRODUCT
+        (PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_DESCRIPTION,MEMBER_CODE)
+        VALUES
+        (#{name},#{price},#{description},#{memberCode})
+    </insert>
+    <delete id="deleteProduct" parameterType="_int">
+        DELETE FROM PRODUCT
+        WHERE
+            PRODUCT_CODE = #{ code }
+    </delete>
+    <update id="updateProduct" parameterType="sleepjo.common.ProductDTO">
+        UPDATE PRODUCT
+        SET
+            PRODUCT_NAME = #{ name },
+            PRODUCT_PRICE= #{price},
+            PRODUCT_DESCRIPTION = #{description}
+        WHERE
+            PRODUCT_CODE = #{ code }
+    </update>
+</mapper>
