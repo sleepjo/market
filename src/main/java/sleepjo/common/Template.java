@@ -33,6 +33,7 @@ public class Template {
             configuration.addMapper(MemberMapper.class);
             configuration.addMapper(PostMapper.class);
             configuration.addMapper(ProductMapper.class);
+            configuration.addMapper(Post1Mapper.class);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
 
         }
