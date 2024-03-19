@@ -13,8 +13,11 @@ public class Application {
     public static void main(String[] args) {
         sc = new Scanner(System.in);
         memberSerivce = new MemberService();
+
+
+
         postService = new PostService();
-        
+
         do{
             System.out.println("********Menu*********");
             System.out.println("1. Member submenu");
@@ -23,44 +26,46 @@ public class Application {
             System.out.println("9. Quit");
             System.out.print("input: ");
             input = sc.nextInt();
-            
+
             switch (input){
-                case 1: 
-                    memberSubmenu();
+                case 1:
+                  memberSubmenu();
                     break;
-                case 2: 
-
-
+                case 2:
                     if(!logInStatus) {
                         System.out.println("You should log in first!!!!");
                         continue;
                     }
 
                     productSubmenu();
+
                     break;
-                case 3: 
+                case 3:
                     postSubmenu();
                     break;
                 case 9: return;
             }
-            
-        } while(input != 9);
-        
-        
+
+
+     } while(input != 9);
+
+
     }
 
     private static void postSubmenu() {
-        do{
+        do {
             System.out.println("**********Post Submenu**********");
             System.out.println("1. view all posts");
-            System.out.println("2. view posts by title");
+            System.out.println("2. view posts by title");  //제목조회
             System.out.println("3. view posts by memberCode");
             System.out.println("9. back to main menu");
             input = sc.nextInt();
-            switch (input){
+            switch (input) {
                 case 1:
-                    viewAllPost();
+
+                    Post1Servise.viewAllPost();
                     break;
+
                 case 2:
                     postService.viewPostByTitle(inputTitle());
                     break;
@@ -116,9 +121,9 @@ public class Application {
                 case 9:
                     return;
             }
-        } while(input != 9);
-        
+        } while (input != 9);
     }
+
 
 
     private static Map<String,String> inputModifyProduct() {
@@ -255,3 +260,4 @@ public class Application {
 
     }
 }
+

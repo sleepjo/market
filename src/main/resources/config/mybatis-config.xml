@@ -7,6 +7,7 @@
     <properties resource="config/connection-info.properties"/>
     <typeAliases>
 
+
         <typeAlias type="sleepjo.common.MemberDTO" alias="MemberDTO"/>
 
 <!--        <typeAlias type="ken.common.MenuAndCategoryDTO" alias="MenuAndCategoryDTO"/>-->
