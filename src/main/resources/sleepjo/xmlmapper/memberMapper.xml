@@ -1,28 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<!--<mapper namespace="ken.section01.xmlmapper.ElementTestMapper">-->
 
-<!--    <insert id="" parameterType="memberDTO">-->
-<!--        INSERT INTO-->
-<!--            MEMBER-->
-<!--            (MENU_NAME, MENU_PRICE, CATEGORY_CODE, ORDERABLE_STATUS)-->
-<!--        VALUES-->
-<!--            (#{ name }, #{ price }, #{categoryCode}, 'Y')-->
-<!--    </insert>-->
+<mapper namespace="sleepjo.xmlmapper.MemberMapper">
 
-<!--    <select id="" resultMap="" parameterType="">-->
-<!--        SELECT-->
-<!--            MEMBER_CODE,-->
-<!--            MEMBER_ID,-->
-<!--            MEMBER_PASSWORD,-->
-<!--            MEMBER_NAME,-->
-<!--            MEMBER_USERNAME,-->
-<!--            MEMBER_EMAIL-->
-<!--        FROM-->
-<!--            MEMBER-->
-<!--        WHERE-->
 
-<!--    </select>-->
+    <insert id="signUp" parameterType="hashmap">
+        INSERT INTO
+            MEMBER
+            (MEMBER_ID_, MEMBER_PASSWORD, MEMBER_NAME, MEMBER_USERNAME, MEMBER_AGE, MEMBER_EMAIL)
+        VALUES
+            (#{id}, #{password}, #{name}, #{username}, #{email})
+    </insert>
+
+    <select id="logIn" resultType="string" parameterType="hashmap">
+        SELECT
+           member_password
+        FROM
+            MEMBER
+        WHERE
+            member_id = #{id}
+    </select>
+
 
 
 <!--</mapper>-->

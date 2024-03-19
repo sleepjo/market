@@ -7,11 +7,13 @@ import java.util.Scanner;
 public class Application {
     static Scanner sc;
     static MemberService memberSerivce;
+    static PostService postService;
     static int input;
     static boolean logInStatus = false;
     public static void main(String[] args) {
         sc = new Scanner(System.in);
         memberSerivce = new MemberService();
+        postService = new PostService();
         
         do{
             System.out.println("********Menu*********");
@@ -27,11 +29,13 @@ public class Application {
                     memberSubmenu();
                     break;
                 case 2: 
-//                    if(!logInStatus) {
-//                        System.out.println("You should log in first!!!!");
-//                        continue;
-//                    }
-                    
+
+
+                    if(!logInStatus) {
+                        System.out.println("You should log in first!!!!");
+                        continue;
+                    }
+
                     productSubmenu();
                     break;
                 case 3: 
@@ -58,7 +62,7 @@ public class Application {
                     viewAllPost();
                     break;
                 case 2:
-                    viewByTitle();
+                    postService.viewPostByTitle(inputTitle());
                     break;
                 case 3:
                     viewByMemberCode();
@@ -69,14 +73,24 @@ public class Application {
         } while(input != 9); 
     }
 
+    private static Map<String,String> inputTitle() {
+        System.out.println("****************");
+        System.out.print("input title: ");
+        sc.nextLine(); // buffer 비우기
+        String title = sc.nextLine();
+        Map<String,String> data = new HashMap<>();
+        data.put("title", title);
+
+        return data;
+    }
+
     private static void viewByMemberCode() {
     }
 
-    private static void viewByTitle() {
-    }
+
 
     private static void viewAllPost() {
-        
+
     }
 
     private static void productSubmenu() {
@@ -105,6 +119,7 @@ public class Application {
         } while(input != 9);
         
     }
+
 
     private static Map<String,String> inputModifyProduct() {
 
@@ -161,6 +176,7 @@ public class Application {
 
         return parameter;
 
+
     }
 
     private static void memberSubmenu() {
@@ -173,13 +189,69 @@ public class Application {
             System.out.print("input: ");
             input = sc.nextInt();
             
-//            switch (input){
-//                case 1: memberSerivce.signUp(); break;
-//                case 2: memberSerivce.logIn(); break;
-//                case 3: memberSerivce.logOut(); break;
-//                case 9: return;
-//            }
+
+            switch (input){
+                case 1: memberSerivce.signUp(inputSignUp()); break;
+                case 2:
+                    if(logInStatus) {
+                        System.out.println("You are already logged in");
+                        continue;
+                    }
+                    logInStatus = memberSerivce.logIn(inputLogIn());
+                    if(logInStatus){
+                        System.out.println("You are logged in!!!");
+                    }
+                    else{
+                        System.out.println("Failed to Logged in!!!");
+                    }
+                    break;
+                case 3:
+                    if(!logInStatus){
+                        System.out.println("You are already logged out!!!");
+                    } else {
+                        logInStatus = false;
+                        System.out.println("You are signed out!!!");
+                    }
+                    break;
+                case 9: return;
+            }
+
             
         } while(true);
+    }
+
+    private static Map<String,String> inputLogIn() {
+        sc.nextLine();
+        System.out.print("id: ");
+        String id = sc.nextLine();
+        System.out.print("password: ");
+        String password = sc.nextLine();
+        Map<String,String> data = new HashMap<>();
+        data.put("id", id);
+        data.put("password", password);
+        return data;
+    }
+
+    private static Map<String,String> inputSignUp() {
+        sc.nextLine(); // buffer 비우기
+        System.out.print("id: ");
+        String id = sc.nextLine();
+        System.out.print("password: ");
+        String password = sc.nextLine();
+        System.out.print("name: ");
+        String name = sc.nextLine();
+        System.out.print("username: ");
+        String username = sc.nextLine();
+        System.out.print("email: ");
+        String email = sc.nextLine();
+        Map<String,String> data = new HashMap<>();
+        data.put("id", id);
+        data.put("password", password);
+        data.put("name", name);
+        data.put("username", username);
+        data.put("email", email);
+
+        return data;
+
     }
 }

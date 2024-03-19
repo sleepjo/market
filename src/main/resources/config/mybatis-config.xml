@@ -6,7 +6,9 @@
 
     <properties resource="config/connection-info.properties"/>
     <typeAliases>
-<!--        <typeAlias type="ken.common.MenuDTO" alias="MenuDTO"/>-->
+
+        <typeAlias type="sleepjo.common.MemberDTO" alias="MemberDTO"/>
+
 <!--        <typeAlias type="ken.common.MenuAndCategoryDTO" alias="MenuAndCategoryDTO"/>-->
 <!--        <typeAlias type="ken.common.CategoryAndMenuDTO" alias="CategoryAndMenuDTO"/>-->
         <!--<typeAlias type="ken.common.SearchCriteria" alias="SearchCriteria"/>-->
@@ -14,7 +16,7 @@
 
     <environments default="dev">
         <environment id="dev">
-            <transactionManager type="JDBC"></transactionManager>
+            <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="${driver}"/>
                 <property name="url" value="${url}"/>
